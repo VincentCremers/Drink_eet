@@ -1,0 +1,2 @@
+rootProject.name='DrInk_en_EET'
+include ':app'
