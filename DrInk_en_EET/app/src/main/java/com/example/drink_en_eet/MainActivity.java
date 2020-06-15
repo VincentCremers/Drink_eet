@@ -2,6 +2,8 @@ package com.example.drink_en_eet;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.ui.AppBarConfiguration;
+
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setTitle("Home");
         actionBar.setSubtitle("Welkom");
+
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(navController.getGraph()).build();
+
     }
 
     public void onButtonClick(View view){
