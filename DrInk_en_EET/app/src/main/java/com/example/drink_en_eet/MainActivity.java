@@ -25,9 +25,6 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("Home");
         actionBar.setSubtitle("Welkom");
 
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(navController.getGraph()).build();
-
     }
 
     public void onButtonClick(View view){
