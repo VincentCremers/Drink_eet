@@ -17,12 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Coding in flow"
+        android:text="[Gebruikersnaam]"
         android:textSize="16sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TESTEST" />
+        android:text="[Dagen achterelkaar ingelogt?]" />
 
 </LinearLayout>

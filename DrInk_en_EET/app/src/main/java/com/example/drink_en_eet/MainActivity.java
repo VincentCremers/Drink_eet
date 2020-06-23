@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MaaltijdFragment()).addToBackStack("tag").commit();
                 break;
-                
+
             case R.id.nav_login:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new LoginFragment()).addToBackStack("tag").commit();
