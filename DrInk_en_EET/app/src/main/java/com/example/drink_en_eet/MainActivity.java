@@ -53,23 +53,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new HomeFragment()).commit();
+                        new HomeFragment()).addToBackStack("tag").commit();
                 break;
+
+            case R.id.nav_maaltijd:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new MaaltijdFragment()).addToBackStack("tag").commit();
+                break;
+                
+            case R.id.nav_login:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LoginFragment()).addToBackStack("tag").commit();
+                break;
+
             case R.id.nav_sport:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MaaltijdFragment()).commit();
+                        new TrainingFragment()).addToBackStack("tag").commit();
                 break;
-            case R.id.nav_maaltijd:
-                Toast.makeText(this, "HELLO", Toast.LENGTH_SHORT).show();
+
+            case R.id.nav_instellingen:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingsFragment()).addToBackStack("tag").commit();
                 break;
+
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
-    public void onBackPressed(){
-        if (drawer.isDrawerOpen(GravityCompat.START)){
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();

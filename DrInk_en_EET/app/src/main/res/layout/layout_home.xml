@@ -1,42 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/home_toevoegen"
+            android:layout_width="380dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="16dp"
+            android:text="Eten toevoegen"
+            app:layout_constraintBottom_toTopOf="@+id/home_training"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="174dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="24dp"
-        android:onClick="onButtonClick"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="546dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="135dp"
-        android:layout_height="48dp"
-        android:onClick="onLoginButtonClick"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="546dp" />
+        <Button
+            android:id="@+id/home_training"
+            android:layout_width="380dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="16dp"
+            android:text="Training Invullen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/home_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="256dp"
+            android:layout_height="286dp"
+            android:layout_marginTop="100dp"
+            android:progressTint="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/home_caloriën"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="16dp"
+            android:text="Caloriën over:"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/home_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1500/2000"
+            app:layout_constraintBottom_toBottomOf="@+id/home_progress"
+            app:layout_constraintEnd_toEndOf="@+id/home_progress"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/home_progress"
+            app:layout_constraintTop_toTopOf="@+id/home_progress" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
