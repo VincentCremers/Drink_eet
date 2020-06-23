@@ -5,4 +5,5 @@
     android:thickness="12dp"
     android:useLevel="true">
     <solid android:color="@color/colorAccent" />
+
 </shape>
