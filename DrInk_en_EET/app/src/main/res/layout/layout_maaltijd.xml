@@ -10,40 +10,40 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/maaltijd_ontbijt"
             android:layout_width="380dp"
             android:layout_height="70dp"
             android:layout_marginBottom="16dp"
             android:text="Ontbijt"
-            app:layout_constraintBottom_toTopOf="@+id/button8"
+            app:layout_constraintBottom_toTopOf="@+id/maaltijd_middageten"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/maaltijd_middageten"
             android:layout_width="380dp"
             android:layout_height="70dp"
             android:layout_marginBottom="16dp"
             android:text="Middageten"
-            app:layout_constraintBottom_toTopOf="@+id/button9"
+            app:layout_constraintBottom_toTopOf="@+id/maaltijd_avondeten"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/maaltijd_avondeten"
             android:layout_width="380dp"
             android:layout_height="70dp"
             android:layout_marginBottom="16dp"
             android:text="Avondeten"
-            app:layout_constraintBottom_toTopOf="@+id/button10"
+            app:layout_constraintBottom_toTopOf="@+id/maaltijd_snack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/maaltijd_snack"
             android:layout_width="380dp"
             android:layout_height="70dp"
             android:layout_marginBottom="16dp"
@@ -61,7 +61,7 @@
             android:layout_marginBottom="16dp"
             android:text="Maaltijden"
             android:textSize="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/button7"
+            app:layout_constraintBottom_toTopOf="@+id/maaltijd_ontbijt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"

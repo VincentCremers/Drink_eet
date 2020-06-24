@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private ProgressBar progressBar;
+    private TextView textView;
 
     @Nullable
     @Override
@@ -27,6 +29,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         Button button_training = (Button) view.findViewById(R.id.home_training);
         button_training.setOnClickListener(this);
 
+        textView = view.findViewById(R.id.progress_text);
         progressBar = view.findViewById(R.id.home_progress);
 
         Button plus = (Button) view.findViewById(R.id.plus);
@@ -52,9 +55,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.plus:
                 progressBar.setProgress(progressBar.getProgress()+10);
+                textView.setText(String.valueOf(progressBar.getProgress()));
                 break;
             case R.id.min:
                 progressBar.setProgress(progressBar.getProgress()-10);
+                textView.setText(String.valueOf(progressBar.getProgress()));
                 break;
         }
     }

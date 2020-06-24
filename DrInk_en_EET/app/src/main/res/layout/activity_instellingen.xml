@@ -59,13 +59,13 @@
         android:focusable="true"
         android:hint="Herhaal nieuw wachtwoord"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintBottom_toTopOf="@+id/maaltijd_ontbijt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/maaltijd_ontbijt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="124dp"
@@ -85,13 +85,13 @@
         android:layout_alignParentRight="true"
         android:focusable="true"
         android:hint="E-mailadres"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/maaltijd_middageten"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/maaltijd_middageten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="220dp"
@@ -106,7 +106,7 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/maaltijd_ontbijt"
         tools:layout_editor_absoluteX="0dp" />
 
 
