@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Kies je traning:"
+            android:text="Kies je training:"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/training_workout_wheel"
             app:layout_constraintEnd_toEndOf="parent"
