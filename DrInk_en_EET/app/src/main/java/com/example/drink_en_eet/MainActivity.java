@@ -10,7 +10,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +23,9 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String SHARED_PREFS = "sharedPrefs";
+    private static final String CALORIES = "calories";
+
     private DrawerLayout drawer;
 
     @Override
@@ -76,6 +81,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new SettingsFragment()).addToBackStack("tag").commit();
                 break;
 
+            case R.id.nav_reset:
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear().apply();
+
+                break;
+
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -91,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-//    @Override
+    //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu){
 //        MenuInflater inflater = getMenuInflater();
 //        inflater.inflate(R.menu.main_menu, menu);

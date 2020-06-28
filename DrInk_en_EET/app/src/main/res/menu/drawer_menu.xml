@@ -30,8 +30,12 @@
             android:title="Login" />
     </group>
 
-    <!--    <item android:title="Communicate" />-->
-    <!--    <menu>-->
-    <!--        <item android:title="Test" />-->
-    <!--    </menu>-->
+        <item>
+            <menu>
+                <item
+                    android:title="Reset"
+                    android:icon="@drawable/ic_reset"
+                    android:id="@+id/nav_reset"/>
+            </menu>
+    </item>
 </menu>
