@@ -11,13 +11,13 @@
         android:layout_height="wrap_content"
         android:text="Instellingen"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/voornaam"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/voornaam"
         android:layout_width="290dp"
         android:layout_height="49dp"
         android:layout_alignParentStart="true"
@@ -27,13 +27,13 @@
         android:focusable="true"
         android:hint="Oud wachtwoord"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/achternaam"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/achternaam"
         android:layout_width="290dp"
         android:layout_height="49dp"
         android:layout_alignParentStart="true"
@@ -43,12 +43,12 @@
         android:focusable="true"
         android:hint="Nieuw wachtwoord"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/email"
         android:layout_width="290dp"
         android:layout_height="49dp"
         android:layout_alignParentStart="true"
@@ -69,13 +69,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="124dp"
         android:text="Verander wachtwoord"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/wachtwoord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.287"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/wachtwoord"
         android:layout_width="290dp"
         android:layout_height="49dp"
         android:layout_alignParentStart="true"
@@ -134,7 +134,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintBottom_toTopOf="@+id/wachtwoord"
         app:layout_constraintTop_toBottomOf="@+id/maaltijd_ontbijt"
         tools:layout_editor_absoluteX="0dp" />
 
