@@ -31,7 +31,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.button4:
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new SettingsFragment()).addToBackStack("tag").commit();
+                        new RegisterFragment()).addToBackStack("tag").commit();
                 break;
         }
     }

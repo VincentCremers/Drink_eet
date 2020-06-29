@@ -12,13 +12,21 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
+import com.android.volley.*;
 
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
@@ -88,6 +96,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void registerUser(String voornaam, final String achternaam, String email, String wachtwoord) {
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        String URL = "http://192.168.178.17:8080/api/add";
+
+        final String voornaam_string = voornaam;
+        final String achternaam_string = achternaam;
+        final String email_string = email;
+        final String wachtwoord_string = wachtwoord;
+
+        StringRequest sr= new StringRequest(
+                Request.Method.POST,
+                URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("SUCCES", response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("ERROR", error.toString());
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("FirstName", voornaam_string);
+                params.put("LastName", achternaam_string);
+                params.put("Email", email_string);
+                params.put("Password", wachtwoord_string);
+
+                return params;
+            }
+        };
+        requestQueue.add(sr);
     }
 
 
