@@ -1,5 +1,7 @@
 package com.example.drink_en_eet;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TrainingFragment extends Fragment implements View.OnClickListener {
+    private static final String SHARED_PREFS = "sharedPrefs";
+    private static final String CALORIES = "calories";
+
     private NumberPicker workout_wheel;
     private NumberPicker time_wheel;
 
@@ -67,5 +72,15 @@ public class TrainingFragment extends Fragment implements View.OnClickListener {
     public void calculate_calories(int workout, int tijd){
         int verbrand = workout_calories.get(workouts[workout]) * Integer.parseInt(time_options[tijd]);
         Toast.makeText(getActivity(), "Caloriën verbrand: " + verbrand, Toast.LENGTH_SHORT).show();
+
+
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putInt(CALORIES, sharedPreferences.getInt(CALORIES, 0) - verbrand);
+
+        editor.apply();
+
     }
 }

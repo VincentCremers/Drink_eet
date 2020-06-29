@@ -16,26 +16,24 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ZoekFragment extends Fragment implements View.OnClickListener {
     private String titel;
 
     private static final String SHARED_PREFS = "sharedPrefs";
-    private static final String CALORIES = "calories";
+    private static final String FOOD_LIST = "food_list";
 
+    private ArrayList<Food> foods;
 
-    private static final String ETEN = "eten";
-    private static final String PROTEIN = "protein";
-    private static final String KOOLHYDRATEN = "koolhydraten";
-    private static final String VETTEN = "vetten";
-
-
-
-    private ArrayList<EditText> input;
 
     private EditText eten;
     private EditText calories;
@@ -52,8 +50,6 @@ public class ZoekFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_eten_zoeken_2, container, false);
 
-        input = new ArrayList<>();
-
         TextView text = view.findViewById(R.id.zoeken2_titel);
         Button button = view.findViewById(R.id.zoeken2_toevoegen);
 
@@ -62,7 +58,6 @@ public class ZoekFragment extends Fragment implements View.OnClickListener {
         eiwitten = view.findViewById(R.id.zoeken_eiwitten);
         koolhydraten = view.findViewById(R.id.zoeken_koolhydraten);
         vetten = view.findViewById(R.id.zoeken_vetten);
-
 
 
         text.setText(titel);
@@ -83,18 +78,46 @@ public class ZoekFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+
     private void etenOpslaan(Food food) {
+        loadData();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
 
+        foods.add(food);
 
-//        editor.putString(ETEN, food.getName());
-        editor.putInt(CALORIES, sharedPreferences.getInt(CALORIES, 0) + food.getCalories());
-//        editor.putInt(PROTEIN, food.getProtein());
-//        editor.putInt(KOOLHYDRATEN, food.getCarbs());
-//        editor.putInt(VETTEN, food.getFat());
+        String json = gson.toJson(foods);
 
+        editor.putString(FOOD_LIST, json);
         editor.apply();
     }
+
+
+    private void loadData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+
+        String json = sharedPreferences.getString(FOOD_LIST, null);
+
+        Type type = new TypeToken<ArrayList<Food>>() {
+        }.getType();
+
+        foods = gson.fromJson(json, type);
+
+        if (foods == null) {
+            foods = new ArrayList<>();
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
 

@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear().apply();
-
                 break;
 
         }
@@ -102,26 +101,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-
-
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu){
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.main_menu, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        switch (item.getItemId()){
-//            case R.id.action_add:
-//                //TODO
-//            case R.id.action_settings:
-//                //TODO
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 }
 
 
