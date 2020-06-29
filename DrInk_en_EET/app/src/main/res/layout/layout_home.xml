@@ -86,27 +86,5 @@
             app:layout_constraintStart_toStartOf="@+id/home_progress"
             app:layout_constraintTop_toTopOf="@+id/home_progress" />
 
-        <Button
-            android:id="@+id/plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginBottom="16dp"
-            android:text="+ 10"
-            app:layout_constraintBottom_toTopOf="@+id/home_toevoegen"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="- 10"
-            app:layout_constraintBottom_toTopOf="@+id/home_toevoegen"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.455"
-            app:layout_constraintStart_toEndOf="@+id/plus" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
