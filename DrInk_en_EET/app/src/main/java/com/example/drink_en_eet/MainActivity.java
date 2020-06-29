@@ -24,7 +24,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String SHARED_PREFS = "sharedPrefs";
-    private static final String CALORIES = "calories";
+
 
     private DrawerLayout drawer;
 
@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
-
     }
 
     @Override
