@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/home_toevoegen"
+            android:layout_width="380dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="16dp"
+            android:text="Eten toevoegen"
+            app:layout_constraintBottom_toTopOf="@+id/home_training"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/home_training"
+            android:layout_width="380dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="16dp"
+            android:text="Training Invullen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <ProgressBar
+            android:id="@+id/home_progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="278dp"
+            android:layout_height="308dp"
+            android:layout_marginTop="100dp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/circle"
+            android:progressTint="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/home_caloriën"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="16dp"
+            android:text="Caloriën over:"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/home_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <ProgressBar-->
+        <!--            android:id="@+id/timer_progress"-->
+        <!--            style="?android:attr/progressBarStyleHorizontal"-->
+        <!--            android:layout_width="200dp"-->
+        <!--            android:layout_height="200dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:layout_marginBottom="16dp"-->
+        <!--            android:indeterminate="false"-->
+        <!--            android:max="100"-->
+        <!--            android:progressDrawable="@drawable/progress_bar"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/home_toevoegen"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <TextView
+            android:id="@+id/progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/home_progress"
+            app:layout_constraintEnd_toEndOf="@+id/home_progress"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/home_progress"
+            app:layout_constraintTop_toTopOf="@+id/home_progress" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

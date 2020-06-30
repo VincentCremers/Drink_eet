@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_maaltijd"
+            android:icon="@drawable/ic_food"
+            android:title="Maaltijd" />
+
+        <item
+            android:id="@+id/nav_sport"
+            android:icon="@drawable/ic_sport"
+            android:title="Sport" />
+
+        <item
+            android:id="@+id/nav_instellingen"
+            android:icon="@drawable/ic_settings"
+            android:title="Instellingen" />
+
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_account"
+            android:title="Login" />
+    </group>
+
+        <item>
+            <menu>
+                <item
+                    android:title="Reset"
+                    android:icon="@drawable/ic_reset"
+                    android:id="@+id/nav_reset"/>
+            </menu>
+    </item>
+</menu>

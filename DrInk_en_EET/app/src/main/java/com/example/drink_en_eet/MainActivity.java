@@ -1,39 +1,156 @@
 package com.example.drink_en_eet;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.ui.AppBarConfiguration;
 
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
+import com.android.volley.*;
 
-public class MainActivity extends AppCompatActivity {
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String SHARED_PREFS = "sharedPrefs";
+    private static final String CALORIES = "calories";
+
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setTitle("Home");
-        actionBar.setSubtitle("Welkom");
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
+
+
     }
 
-    public void onButtonClick(View view){
-        Toast.makeText(this, "INGEDRUKT", Toast.LENGTH_SHORT).show();
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new HomeFragment()).addToBackStack("tag").commit();
+                break;
+
+            case R.id.nav_maaltijd:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new MaaltijdFragment()).addToBackStack("tag").commit();
+                break;
+
+            case R.id.nav_login:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new LoginFragment()).addToBackStack("tag").commit();
+                break;
+
+            case R.id.nav_sport:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new TrainingFragment()).addToBackStack("tag").commit();
+                break;
+
+            case R.id.nav_instellingen:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingsFragment()).addToBackStack("tag").commit();
+                break;
+
+            case R.id.nav_reset:
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear().apply();
+
+                break;
+
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
-    public void onLoginButtonClick(View view){
-        Intent intent = new Intent(this, Login.class);
-        startActivity(intent);
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
-//    @Override
+    public void registerUser(String voornaam, final String achternaam, String email, String wachtwoord) {
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        String URL = "http://192.168.178.17:8080/api/add";
+
+        final String voornaam_string = voornaam;
+        final String achternaam_string = achternaam;
+        final String email_string = email;
+        final String wachtwoord_string = wachtwoord;
+
+        StringRequest sr= new StringRequest(
+                Request.Method.POST,
+                URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("SUCCES", response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("ERROR", error.toString());
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("FirstName", voornaam_string);
+                params.put("LastName", achternaam_string);
+                params.put("Email", email_string);
+                params.put("Password", wachtwoord_string);
+
+                return params;
+            }
+        };
+        requestQueue.add(sr);
+    }
+
+
+    //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu){
 //        MenuInflater inflater = getMenuInflater();
 //        inflater.inflate(R.menu.main_menu, menu);
