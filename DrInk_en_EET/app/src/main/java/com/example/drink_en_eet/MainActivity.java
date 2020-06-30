@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        fakeLogin();
+        
 
         if (!checkLoggedIn()) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
