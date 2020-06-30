@@ -64,6 +64,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 String email_string  = email.getText().toString();
                 String wachtwoord_string = wachtwoord.getText().toString();
 
+//                Voor in de console
                 Log.i("VOORNAAM", voornaam_string);
                 Log.i("ACHTERNAAM", achternaam_string);
                 Log.i("EMAIL", email_string);
@@ -100,10 +101,10 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("FirstName", voornaam_string);
-                params.put("LastName", achternaam_string);
-                params.put("Email", email_string);
-                params.put("Password", wachtwoord_string);
+                params.put("firstName", voornaam_string);
+                params.put("lastName", achternaam_string);
+                params.put("email", email_string);
+                params.put("password", wachtwoord_string);
 
                 return params;
             }
