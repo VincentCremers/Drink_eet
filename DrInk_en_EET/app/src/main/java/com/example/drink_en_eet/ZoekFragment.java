@@ -76,8 +76,11 @@ public class ZoekFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.zoeken2_toevoegen:
-                if(eten.)
-                checkEten();
+                if(eten.getText().toString().equals("") || calories.getText().toString().equals("") || eiwitten.getText().toString().equals("") || koolhydraten.getText().toString().equals("") || vetten.getText().toString().equals("")){
+                    Toast.makeText(getActivity(), "Vul alle velden in", Toast.LENGTH_SHORT).show();
+                }else{
+                    checkEten();
+                }
                 break;
 
             case R.id.zoeken_scannen:
