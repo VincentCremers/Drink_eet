@@ -53,7 +53,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        
+
+
+        fakeLogin();
+
         checkLoggedIn(navigationView);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -116,53 +119,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void registerUser(String voornaam, final String achternaam, String email, String wachtwoord) {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://192.168.178.17:8080/api/add";
-
-        final String voornaam_string = voornaam;
-        final String achternaam_string = achternaam;
-        final String email_string = email;
-        final String wachtwoord_string = wachtwoord;
-
-        StringRequest sr = new StringRequest(
-                Request.Method.POST,
-                URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("SUCCES", response);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.i("ERROR", error.toString());
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("FirstName", voornaam_string);
-                params.put("LastName", achternaam_string);
-                params.put("Email", email_string);
-                params.put("Password", wachtwoord_string);
-
-                return params;
-            }
-        };
-        requestQueue.add(sr);
-    }
-
-    private void loadData() {
+    public void checkLoggedIn(NavigationView navigationView) {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        Gson gson = new Gson();
 
-        sharedPreferences.getString(JWT_TOKEN, null);
-    }
-
-    public void checkLoggedIn(NavigationView navigationView){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         if (sharedPreferences.getString(JWT_TOKEN, null) != null) {
             View headerView = navigationView.getHeaderView(0);
             TextView name_text = headerView.findViewById(R.id.header_name);
@@ -171,25 +130,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu){
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.main_menu, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item){
-//        switch (item.getItemId()){
-//            case R.id.action_add:
-//                //TODO
-//            case R.id.action_settings:
-//                //TODO
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    private void fakeLogin() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(JWT_TOKEN, "token");
+        editor.apply();
+    }
 }
 
 
