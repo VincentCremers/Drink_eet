@@ -27,6 +27,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class LoginFragment extends Fragment implements View.OnClickListener {
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String JWT_TOKEN = "jwt";
@@ -53,6 +55,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.registreer:
 //                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
 //                        new RegisterFragment()).addToBackStack("tag").commit();
+
                 getJWT();
                 break;
 
@@ -64,7 +67,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
 
     public void getJWT() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
         final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
@@ -87,6 +90,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onResponse(JSONObject response) {
                         editor.putString(JWT_TOKEN, response.toString());
+                        ((MainActivity)getActivity()).onCreateHelper();
                         Log.i("JSON RESPONSE", response.toString());
                     }
                 },

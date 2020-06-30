@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -25,6 +26,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String DAILY_CALORIES = "calories";
     private static final String FOOD_LIST = "food_list";
+    private static final String JWT_TOKEN = "jwt";
 
     private ArrayList<Food> foods;
     private int maxCalories;
@@ -36,10 +38,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.layout_home, container, false);
 
-        
 
         Button button_toevoegen = view.findViewById(R.id.home_toevoegen);
         button_toevoegen.setOnClickListener(this);
@@ -101,6 +101,4 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             foods = new ArrayList<>();
         }
     }
-
-
 }

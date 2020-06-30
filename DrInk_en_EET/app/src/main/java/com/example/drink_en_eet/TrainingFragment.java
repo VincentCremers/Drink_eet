@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class TrainingFragment extends Fragment implements View.OnClickListener {
     private static final String SHARED_PREFS = "sharedPrefs";
-    private static final String CALORIES = "calories";
+    private static final String JWT_TOKEN = "jwt";
     private static final String FOOD_LIST = "food_list";
 
     private ArrayList<Food> foods;
@@ -40,11 +40,12 @@ public class TrainingFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_training, container, false);
 
+
         workout_wheel = view.findViewById(R.id.training_workout_wheel);
         time_wheel = view.findViewById(R.id.training_workout_time_wheel);
         Button invul_button = (Button) view.findViewById(R.id.training_invullen);
 
-        workout_calories = new HashMap<String, Integer>();
+        workout_calories = new HashMap<>();
         workout_calories.put("Hardlopen", 10);
         workout_calories.put("Touw springen", 15);
         workout_calories.put("Zwemmen", 30);
@@ -70,7 +71,6 @@ public class TrainingFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.training_invullen:
-                //Toast.makeText(getActivity(), "Workout: " + workouts[workout_wheel.getValue()] + "\n Tijd: " + time_options[time_wheel.getValue()], Toast.LENGTH_SHORT).show();
                 calculate_calories(workout_wheel.getValue(), time_wheel.getValue());
                 break;
         }
@@ -78,7 +78,7 @@ public class TrainingFragment extends Fragment implements View.OnClickListener {
 
     public void calculate_calories(int workout, int tijd){
         int verbrand = workout_calories.get(workouts[workout]) * Integer.parseInt(time_options[tijd]);
-        Toast.makeText(getActivity(), "Calorieën verbrand: " + verbrand, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Calorieën verbrand door training: " + verbrand, Toast.LENGTH_SHORT).show();
 
         Food food = new Food("Training", verbrand*-1, 0,0,0);
 
@@ -115,5 +115,4 @@ public class TrainingFragment extends Fragment implements View.OnClickListener {
             foods = new ArrayList<>();
         }
     }
-
 }

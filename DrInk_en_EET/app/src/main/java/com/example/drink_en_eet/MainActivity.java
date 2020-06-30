@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String JWT_TOKEN = "jwt";
 
+    Toolbar toolbar;
+
     private DrawerLayout drawer;
 
     @Override
@@ -47,27 +49,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        fakeLogin();
+
+        if (!checkLoggedIn()) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new LoginFragment()).addToBackStack("tag").commit();
+        } else {
+            onCreateHelper();
+        }
+    }
+
+    public void onCreateHelper() {
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        fakeLogin();
-
-        checkLoggedIn(navigationView);
+        View headerView = navigationView.getHeaderView(0);
+        TextView name_text = headerView.findViewById(R.id.header_name);
+        name_text.setText("Ingelogd");
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
-        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new HomeFragment()).commit();
+        navigationView.setCheckedItem(R.id.nav_home);
+
     }
 
     @Override
@@ -119,22 +131,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void checkLoggedIn(NavigationView navigationView) {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-
-        if (sharedPreferences.getString(JWT_TOKEN, null) != null) {
-            View headerView = navigationView.getHeaderView(0);
-            TextView name_text = headerView.findViewById(R.id.header_name);
-            //TODO naam ophalen van db
-            name_text.setText("Ingelogd");
-        }
-    }
 
     private void fakeLogin() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(JWT_TOKEN, "token");
         editor.apply();
+    }
+
+    public boolean checkLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        if (sharedPreferences.getString(JWT_TOKEN, null) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
