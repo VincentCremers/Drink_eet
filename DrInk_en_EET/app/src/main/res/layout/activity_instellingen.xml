@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Instellingen">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView"
@@ -90,6 +89,23 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/instellingen_calorieen"
+        android:layout_width="290dp"
+        android:layout_height="49dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:focusable="true"
+        android:hint="Dagelijkse calorieën"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.323" />
+
     <Button
         android:id="@+id/maaltijd_middageten"
         android:layout_width="wrap_content"
@@ -101,6 +117,19 @@
         app:layout_constraintHorizontal_bias="0.273"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/instellingen_calorieen_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="Verander dagelijkse calorieën"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.389"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instellingen_calorieen"
+        app:layout_constraintVertical_bias="0.0" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -108,6 +137,18 @@
         app:layout_constraintBottom_toTopOf="@+id/wachtwoord"
         app:layout_constraintTop_toBottomOf="@+id/maaltijd_ontbijt"
         tools:layout_editor_absoluteX="0dp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maaltijd_middageten"
+        app:layout_constraintVertical_bias="0.127" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

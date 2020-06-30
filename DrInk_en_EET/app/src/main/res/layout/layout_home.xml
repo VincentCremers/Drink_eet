@@ -42,9 +42,12 @@
             android:progress="0"
             android:progressDrawable="@drawable/circle"
             android:progressTint="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/home_toevoegen"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/home_caloriën"

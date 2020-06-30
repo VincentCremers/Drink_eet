@@ -1,6 +1,8 @@
 package com.example.drink_en_eet;
 
 import android.app.ActionBar;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class MaaltijdFragment extends Fragment implements View.OnClickListener {
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_maaltijd, container, false);
+
 
         Button ontbijt_button = view.findViewById(R.id.maaltijd_ontbijt);
         Button middageten_button = view.findViewById(R.id.maaltijd_middageten);
@@ -58,6 +60,4 @@ public class MaaltijdFragment extends Fragment implements View.OnClickListener {
 
         }
     }
-
-
 }

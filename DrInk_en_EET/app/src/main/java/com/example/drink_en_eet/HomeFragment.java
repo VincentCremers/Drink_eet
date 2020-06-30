@@ -15,9 +15,21 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private static final String SHARED_PREFS = "sharedPrefs";
-    private static final String CALORIES = "calories";
+    private static final String DAILY_CALORIES = "calories";
+    private static final String FOOD_LIST = "food_list";
+    private static final String JWT_TOKEN = "jwt";
+
+    private ArrayList<Food> foods;
+    private int maxCalories;
 
 
     private ProgressBar progressBar;
@@ -26,13 +38,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.layout_home, container, false);
 
-        Button button_toevoegen =  view.findViewById(R.id.home_toevoegen);
+
+        Button button_toevoegen = view.findViewById(R.id.home_toevoegen);
         button_toevoegen.setOnClickListener(this);
 
-        Button button_training =  view.findViewById(R.id.home_training);
+        Button button_training = view.findViewById(R.id.home_training);
         button_training.setOnClickListener(this);
 
         textView = view.findViewById(R.id.progress_text);
@@ -58,14 +70,35 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void setProgressBar(){
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+    public void setProgressBar() {
+        loadData();
 
-        int calorieen = sharedPreferences.getInt(CALORIES, 0);
+        progressBar.setMax(maxCalories);
 
-        progressBar.setProgress(progressBar.getProgress() + calorieen, true);
-        textView.setText(String.valueOf(progressBar.getProgress()) + "%");
+        int calorieen = 0;
+        for (Food food : foods) {
+            calorieen += food.getCalories();
+        }
+
+        progressBar.setProgress(calorieen, true);
+        textView.setText(String.valueOf(progressBar.getProgress()) + "/" + String.valueOf(maxCalories));
 
     }
 
+    private void loadData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+
+        String json = sharedPreferences.getString(FOOD_LIST, null);
+        maxCalories = sharedPreferences.getInt(DAILY_CALORIES, 2000);
+
+        Type type = new TypeToken<ArrayList<Food>>() {
+        }.getType();
+
+        foods = gson.fromJson(json, type);
+
+        if (foods == null) {
+            foods = new ArrayList<>();
+        }
+    }
 }
