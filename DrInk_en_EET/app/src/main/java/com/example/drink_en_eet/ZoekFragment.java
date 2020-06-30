@@ -2,8 +2,10 @@ package com.example.drink_en_eet;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,7 @@ public class ZoekFragment extends Fragment implements View.OnClickListener {
 
         TextView text = view.findViewById(R.id.zoeken2_titel);
         Button button = view.findViewById(R.id.zoeken2_toevoegen);
+        Button scannen = view.findViewById(R.id.zoeken_scannen);
 
         eten = view.findViewById(R.id.zoeken_eten);
         calories = view.findViewById(R.id.zoeken_calories);
@@ -63,6 +66,7 @@ public class ZoekFragment extends Fragment implements View.OnClickListener {
 
         text.setText(titel);
         button.setOnClickListener(this);
+        scannen.setOnClickListener(this);
 
 
         return view;
@@ -72,11 +76,20 @@ public class ZoekFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.zoeken2_toevoegen:
-                Food food = new Food(eten.getText().toString(), Integer.parseInt(calories.getText().toString()), Integer.parseInt(eiwitten.getText().toString()), Integer.parseInt(koolhydraten.getText().toString()), Integer.parseInt(vetten.getText().toString()));
-                Toast.makeText(getActivity(), "Eten toegevoegd!", Toast.LENGTH_SHORT).show();
-                etenOpslaan(food);
+                if(eten.)
+                checkEten();
                 break;
+
+            case R.id.zoeken_scannen:
+                Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+                startActivity(intent);
         }
+    }
+
+    private void checkEten() {
+        Food food = new Food(eten.getText().toString(), Integer.parseInt(calories.getText().toString()), Integer.parseInt(eiwitten.getText().toString()), Integer.parseInt(koolhydraten.getText().toString()), Integer.parseInt(vetten.getText().toString()));
+        Toast.makeText(getActivity(), "Eten toegevoegd!", Toast.LENGTH_SHORT).show();
+        etenOpslaan(food);
     }
 
 
