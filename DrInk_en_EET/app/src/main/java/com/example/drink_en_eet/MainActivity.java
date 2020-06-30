@@ -39,6 +39,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String JWT_TOKEN = "jwt";
+    private static final String FOOD_LIST = "food_list";
 
     Toolbar toolbar;
 
@@ -103,7 +104,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 editor.remove(JWT_TOKEN).apply();
 
                 finish();
+                overridePendingTransition(0, 0);
                 startActivity(getIntent());
+                overridePendingTransition(0, 0);
                 break;
 
             case R.id.nav_sport:
@@ -117,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_reset:
-                editor.clear().apply();
+                editor.remove(FOOD_LIST).apply();
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomeFragment()).addToBackStack("tag").commit();
