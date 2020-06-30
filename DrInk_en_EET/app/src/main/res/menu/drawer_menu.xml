@@ -27,7 +27,7 @@
         <item
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_account"
-            android:title="Login" />
+            android:title="Uitloggen" />
     </group>
 
         <item>

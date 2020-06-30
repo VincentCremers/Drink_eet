@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        fakeLogin();
+        fakeLogin();
 
         if (!checkLoggedIn()) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         View headerView = navigationView.getHeaderView(0);
         TextView name_text = headerView.findViewById(R.id.header_name);
+        //TODO replace with name from db
         name_text.setText("Ingelogd");
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         switch (item.getItemId()) {
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -96,8 +100,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_login:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new LoginFragment()).addToBackStack("tag").commit();
+                editor.remove(JWT_TOKEN).apply();
+
+                finish();
+                startActivity(getIntent());
                 break;
 
             case R.id.nav_sport:
@@ -109,9 +115,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SettingsFragment()).addToBackStack("tag").commit();
                 break;
+
             case R.id.nav_reset:
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear().apply();
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
