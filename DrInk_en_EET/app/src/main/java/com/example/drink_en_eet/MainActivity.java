@@ -20,18 +20,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.*;
 
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String SHARED_PREFS = "sharedPrefs";
+    private static final String JWT_TOKEN = "jwt";
 
     private DrawerLayout drawer;
 
@@ -46,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        
+        checkLoggedIn(navigationView);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -56,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
-
     }
 
     @Override
@@ -110,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void registerUser(String voornaam, final String achternaam, String email, String wachtwoord) {
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
         String URL = "http://192.168.178.17:8080/api/add";
 
         final String voornaam_string = voornaam;
@@ -118,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final String email_string = email;
         final String wachtwoord_string = wachtwoord;
 
-        StringRequest sr= new StringRequest(
+        StringRequest sr = new StringRequest(
                 Request.Method.POST,
                 URL,
                 new Response.Listener<String>() {
@@ -132,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onErrorResponse(VolleyError error) {
                         Log.i("ERROR", error.toString());
                     }
-                }){
+                }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -145,6 +152,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         requestQueue.add(sr);
+    }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+
+        sharedPreferences.getString(JWT_TOKEN, null);
+    }
+
+    public void checkLoggedIn(NavigationView navigationView){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        if (sharedPreferences.getString(JWT_TOKEN, null) != null) {
+            View headerView = navigationView.getHeaderView(0);
+            TextView name_text = headerView.findViewById(R.id.header_name);
+            //TODO naam ophalen van db
+            name_text.setText("Ingelogd");
+        }
     }
 
 

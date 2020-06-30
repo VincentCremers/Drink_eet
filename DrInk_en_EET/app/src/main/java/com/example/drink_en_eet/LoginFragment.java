@@ -1,11 +1,14 @@
 package com.example.drink_en_eet;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
@@ -24,6 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
+    private static final String SHARED_PREFS = "sharedPrefs";
+    private static final String JWT_TOKEN = "jwt";
 
     @Nullable
     @Override
@@ -56,8 +62,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+
     public void getJWT() {
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         String URL = "http://192.168.178.17:8080/api/authenticate";
 
         final String voornaam = "naam";
@@ -76,6 +86,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        editor.putString(JWT_TOKEN, response.toString());
                         Log.i("JSON RESPONSE", response.toString());
                     }
                 },
