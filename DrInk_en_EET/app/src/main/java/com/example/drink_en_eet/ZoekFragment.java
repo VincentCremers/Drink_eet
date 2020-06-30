@@ -72,7 +72,7 @@ public class ZoekFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.zoeken2_toevoegen:
                 Food food = new Food(eten.getText().toString(), Integer.parseInt(calories.getText().toString()), Integer.parseInt(eiwitten.getText().toString()), Integer.parseInt(koolhydraten.getText().toString()), Integer.parseInt(vetten.getText().toString()));
-                Toast.makeText(getActivity(), String.valueOf(food.getCalories()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Eten toegevoegd!", Toast.LENGTH_SHORT).show();
                 etenOpslaan(food);
                 break;
         }
