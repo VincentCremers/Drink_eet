@@ -73,8 +73,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         String URL = "http://192.168.178.17:8080/api/authenticate";
 
-        final String voornaam = "naam";
-        final String password = "wachtwoord";
+        final String voornaam = "hoi@hoi.nl";
+        final String password = "Test123";
 
         Map<String, String> params = new HashMap<>();
         params.put("username", voornaam);
