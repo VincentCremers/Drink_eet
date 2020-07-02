@@ -41,9 +41,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         Button registreer_button = (Button) view.findViewById(R.id.registreer);
         Button wwvergeten_button = (Button) view.findViewById(R.id.wwvergeten);
+        Button login_button = (Button) view.findViewById(R.id.login);
 
         registreer_button.setOnClickListener(this);
         wwvergeten_button.setOnClickListener(this);
+        login_button.setOnClickListener(this);
 
 
         return view;
@@ -53,15 +55,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.registreer:
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new RegisterFragment()).addToBackStack("tag").commit();
-
-                getJWT();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new RegisterFragment()).addToBackStack("tag").commit();
                 break;
 
             case R.id.wwvergeten:
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ForgetFragment()).addToBackStack("tag").commit();
+                break;
+
+            case R.id.login:
+                getJWT();
         }
     }
 
@@ -73,8 +77,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         String URL = "http://192.168.178.17:8080/api/authenticate";
 
-        final String voornaam = "hoi@hoi.nl";
-        final String password = "Test123";
+        final String voornaam = "naam";
+        final String password = "wachtwoord";
 
         Map<String, String> params = new HashMap<>();
         params.put("username", voornaam);

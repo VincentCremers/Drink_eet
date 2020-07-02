@@ -33,7 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //configure to set authentication builder values
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        System.out.println("Hier gekomen groetjes");
             auth.userDetailsService(myUDS);
     }
 
@@ -43,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/api/authenticate", "/api/register").permitAll()
+                .authorizeRequests().antMatchers("/api/authenticate", "/api/add", "/api/all").permitAll()
                 .anyRequest().authenticated()
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         //adds jwtRequestFilter before UPAF.

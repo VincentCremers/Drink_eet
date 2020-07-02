@@ -69,9 +69,9 @@ public class MainController {
         }
 
         //generates jwt using userdetails. userdetails is only username at the moment
-//        final UserDetails userDetails = userDetailsService
-//                .loadUserByUsername(authenticationRequest.getUsername());
-        final UserDetails userDetails = myUDS.loadUserByUsername(authenticationRequest.getUsername());
+        final UserDetails userDetails = userDetailsService
+                .loadUserByUsername(authenticationRequest.getUsername());
+//        final UserDetails userDetails = myUDS.loadUserByUsername(authenticationRequest.getUsername());
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));

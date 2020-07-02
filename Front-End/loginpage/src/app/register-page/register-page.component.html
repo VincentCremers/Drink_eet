@@ -3,28 +3,23 @@
         <div class="col-4">
 <h2>Registreren</h2>
 
-<form>
+<form [formGroup]="register" (ngSubmit)="onSubmit()">
     <label>Voornaam: </label><br>
-    <input>
+    <input formControlName="firstName">
     <br><br>
     <label>Achternaam: </label><br>
-    <input>
-    <br><br>
-    <label>Gebruikersnaam: </label><br>
-    <input>
-    <br><br>
-    <label>Wachtwoord: </label><br>
-    <input>
-    <br><br>
-    <label>Herhaal wachtwoord: </label><br>
-    <input>
+    <input formControlName="lastName">
     <br><br>
     <label>E-mailadres: </label><br>
-    <input>
+    <input formControlName="email">
     <br><br>
-    <input style="margin-right:8px;" type="submit" value="Registreer">
-    <input style="margin-left:8px;" routerLink="/login-page" type="submit" value="Terug">
+    <label>Wachtwoord: </label><br>
+    <input formControlName="password">
+    <br><br>
+    <button value="Registreer">Registreer</button>
 </form>
+<br><br>
+<input routerLink="/login-page" type="submit" value="Terug">
         </div>
     </div>
 </div>
