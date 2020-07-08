@@ -3,11 +3,13 @@
         <div class="col-4">
 <h2>Login</h2>
 
-<form [formGroup]="login">
+<form [formGroup]="login" (ngSubmit)="onSubmit()">
     <label>Gebruikersnaam:</label><br>
-    <input><br><br>
+  <input formControlName="username">
+  <br><br>
     <label>Wachtwoord:</label><br>
-    <input><br>
+  <input formControlName="password">
+  <br>
     <a style="font-size: small" routerLink="/forgot-pass">Wachtwoord vergeten?</a><br><br>
     <input type="submit" value="Login">
 </form>

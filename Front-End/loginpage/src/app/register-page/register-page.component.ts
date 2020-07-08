@@ -10,7 +10,7 @@ import { HttpClient} from '@angular/common/http';
 })
 export class RegisterPageComponent implements OnInit {
 
-  URL = "http://192.168.178.17:8080/api/add";
+  URL = "http://192.168.178.54:8080/api/add";
   register: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { 

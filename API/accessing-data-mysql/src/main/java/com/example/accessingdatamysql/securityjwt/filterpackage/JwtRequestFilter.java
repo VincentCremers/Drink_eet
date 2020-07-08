@@ -26,7 +26,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtUtil;
 
-    //filter the request for jwt and header. if jwt is valid, gets userdetails out userdetailservice and save if in security
+    //filter the request for jwt and header. if jwt is valid, gets userdetails out userdetailservice
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         final String authorizationHeader = request.getHeader("Authorization");
@@ -41,7 +41,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = this.userDetailService.loadUserByUsername(username);
             if (jwtUtil.validateToken(jwt, userDetails)){
-                //TODO IMPLEMENT CREDENTIALS
                 //manages authentication in context of username and password
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         username, null, userDetails.getAuthorities());
