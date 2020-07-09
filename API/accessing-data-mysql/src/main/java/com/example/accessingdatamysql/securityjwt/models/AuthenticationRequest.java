@@ -18,7 +18,6 @@ public class AuthenticationRequest {
     }
 
     public String getUsername() {
-        System.out.println(username);
         return username;
     }
 
@@ -27,7 +26,6 @@ public class AuthenticationRequest {
     }
 
     public String getPassword() {
-        System.out.println(password);
         return password;
     }
 

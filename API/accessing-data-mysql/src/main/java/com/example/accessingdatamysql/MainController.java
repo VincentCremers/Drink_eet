@@ -58,8 +58,14 @@ public class MainController {
     //requestmapping /authenticate going to take in username and password as an input argument and returns jwt.
     //created authenticate method endpoint, which is mapped to createAuthenticateToken, takes in authenticationRequest (payload in postbody)
     //contains username and password
+//    @PostMapping(path="/authenticate")
+//    public void createAuthenticationToken(@RequestParam String info) throws Exception{
+//    public ResponseEntity<?> createAuthenticationToken(@RequestParam String info) throws Exception{
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody String info) throws Exception{
+        String username = info.split(",")[0];
+        String password = info.split(",")[1];
+        AuthenticationRequest authenticationRequest = new AuthenticationRequest(username, password);
         try{
             //authenticates username and password
             authenticationManager.authenticate(

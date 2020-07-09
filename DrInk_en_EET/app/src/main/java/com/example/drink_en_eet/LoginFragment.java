@@ -25,6 +25,12 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,6 +78,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.login:
+                fakeLogin();
                 getJWT();
         }
     }
@@ -82,7 +89,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
         final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        String URL = "http://192.168.178.17:8080/api/authenticate";
+        String URLs = "http://192.168.0.198:8080/api/authenticate";
 
         final String voornaam = username.getText().toString();
         final String password = this.password.getText().toString();
@@ -95,7 +102,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         JsonObjectRequest jr = new JsonObjectRequest(
                 Request.Method.POST,
-                URL,
+                URLs,
                 parameters,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -112,5 +119,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     }
                 });
         requestQueue.add(jr);
+    }
+
+
+    private void fakeLogin() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(JWT_TOKEN, "token");
+        editor.apply();
+        ((MainActivity)getActivity()).onCreateHelper();
     }
 }

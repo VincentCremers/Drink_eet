@@ -10,12 +10,12 @@ import { HttpClient} from '@angular/common/http';
 })
 export class RegisterPageComponent implements OnInit {
 
-  URL = "http://192.168.178.44:8080/api/add";
+  URL = "http://192.168.0.198:8080/api/add";
   register: FormGroup;
   submitted = false;
   geregistreerd = false;
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { 
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
     this.register = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -28,7 +28,7 @@ export class RegisterPageComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    
+
     var formData: any = new FormData();
     formData.append("firstName", this.register.get('firstName').value);
     formData.append("lastName", this.register.get('lastName').value);

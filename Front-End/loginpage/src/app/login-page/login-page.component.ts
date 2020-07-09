@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginPageComponent implements OnInit {
 
-  URL = "http://192.168.178.44:8080/api/authenticate";
+  URL = "http://localhost:8080/api/authenticate";
   login: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
@@ -23,13 +23,17 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(): void {
-    var formData: any = new FormData();
-    formData.append("username", this.login.get('username').value);
-    formData.append("password", this.login.get('password').value);
-
-    this.httpClient.post<any>(this.URL, formData).subscribe(
-      (res) => console.log(res),
+    let login = "".concat(this.login.get('username').value, ",", this.login.get('password').value)
+    
+    this.httpClient.post<any>(this.URL,login ).subscribe(
+      (res) => this.onResponse(res),
       (err) => console.log(err)
     )
   }
+
+  onResponse(res: string): void{
+    localStorage.setItem('id_token', res);
+    console.log(res)
+  }
+
 }
