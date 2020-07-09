@@ -26,6 +26,9 @@
     </div>
     <br>
     <button value="Registreer">Registreer</button>
+    <div *ngIf="submitted && !f.firstName.errors?.required && !f.lastName.errors?.required && !f.email.errors?.required && !f.password.errors?.required">
+        Registratie voltooid! Klik op Terug om naar Login te gaan.
+    </div>
 </form>
 <br><br>
 <input routerLink="/login-page" type="submit" value="Terug">
