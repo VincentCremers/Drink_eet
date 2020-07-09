@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -33,6 +34,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String JWT_TOKEN = "jwt";
 
+    private EditText username;
+    private EditText password;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         Button registreer_button = (Button) view.findViewById(R.id.registreer);
         Button wwvergeten_button = (Button) view.findViewById(R.id.wwvergeten);
         Button login_button = (Button) view.findViewById(R.id.login);
+
+        username = view.findViewById(R.id.voornaam);
+        password = view.findViewById(R.id.achternaam);
 
         registreer_button.setOnClickListener(this);
         wwvergeten_button.setOnClickListener(this);
@@ -77,8 +84,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         String URL = "http://192.168.178.17:8080/api/authenticate";
 
-        final String voornaam = "naam";
-        final String password = "wachtwoord";
+        final String voornaam = username.getText().toString();
+        final String password = this.password.getText().toString();
 
         Map<String, String> params = new HashMap<>();
         params.put("username", voornaam);
