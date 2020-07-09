@@ -13,6 +13,7 @@ export class RegisterPageComponent implements OnInit {
   URL = "http://192.168.178.44:8080/api/add";
   register: FormGroup;
   submitted = false;
+  geregistreerd = false;
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { 
     this.register = this.formBuilder.group({
