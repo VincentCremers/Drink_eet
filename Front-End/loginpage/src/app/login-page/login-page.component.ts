@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-page',
@@ -8,11 +9,27 @@ import { FormGroup } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
 
+  URL = "http://192.168.178.44:8080/api/authenticate";
   login: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
+    this.login = this.formBuilder.group({
+      username: [''],
+      password: ['']
+    })
+   }
 
   ngOnInit(): void {
   }
 
+  onSubmit(): void {
+    var formData: any = new FormData();
+    formData.append("username", this.login.get('username').value);
+    formData.append("password", this.login.get('password').value);
+
+    this.httpClient.post<any>(this.URL, formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    )
+  }
 }

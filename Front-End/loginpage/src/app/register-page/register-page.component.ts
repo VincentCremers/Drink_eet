@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient} from '@angular/common/http';
 
 @Component({
@@ -10,21 +10,24 @@ import { HttpClient} from '@angular/common/http';
 })
 export class RegisterPageComponent implements OnInit {
 
-  URL = "http://192.168.178.17:8080/api/add";
+  URL = "http://192.168.178.44:8080/api/add";
   register: FormGroup;
+  submitted = false;
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { 
     this.register = this.formBuilder.group({
-      firstName: [''],
-      lastName: [''],
-      email: [''],
-      password: ['']
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     })
   }
 
   ngOnInit(): void {}
 
   onSubmit(): void {
+    this.submitted = true;
+    
     var formData: any = new FormData();
     formData.append("firstName", this.register.get('firstName').value);
     formData.append("lastName", this.register.get('lastName').value);
@@ -36,4 +39,6 @@ export class RegisterPageComponent implements OnInit {
       (err) => console.log(err)
     )
   }
+
+  get f() { return this.register.controls; }
 }

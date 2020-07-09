@@ -4,6 +4,7 @@ import com.example.accessingdatamysql.securityjwt.models.AuthenticationRequest;
 import com.example.accessingdatamysql.securityjwt.models.AuthenticationResponse;
 import com.example.accessingdatamysql.securityjwt.services.MyUDS;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
