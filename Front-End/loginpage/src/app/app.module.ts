@@ -12,10 +12,12 @@ import { FeedbackPageComponent } from './feedback-page/feedback-page.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HomeComponent} from "./home";
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     LoginPageComponent,
     RegisterPageComponent,
     NavigationBarComponent,

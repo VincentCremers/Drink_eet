@@ -5,9 +5,11 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { FeedbackPageComponent } from './feedback-page/feedback-page.component';
+import {HomeComponent} from "./home";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login-page', pathMatch: 'full' },
+  { path: 'home-page', component: HomeComponent},
   { path: 'login-page', component: LoginPageComponent },
   { path: 'register-page', component: RegisterPageComponent},
   { path: 'navigation-bar', component: NavigationBarComponent},

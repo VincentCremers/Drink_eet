@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import {HomeComponent} from "../home";
 
 @Component({
   selector: 'app-login-page',
@@ -11,20 +13,26 @@ export class LoginPageComponent implements OnInit {
 
   URL = "http://localhost:8080/api/authenticate";
   login: FormGroup;
+  returnUrl: string;
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) {
+
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private route: ActivatedRoute, private router: Router) {
     this.login = this.formBuilder.group({
       username: [''],
       password: ['']
     })
+    if (localStorage.getItem('id_token') !== null) {
+      this.router.navigate(['/']);
+    }
    }
 
   ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   onSubmit(): void {
     let login = "".concat(this.login.get('username').value, ",", this.login.get('password').value)
-    
+
     this.httpClient.post<any>(this.URL,login ).subscribe(
       (res) => this.onResponse(res),
       (err) => console.log(err)
@@ -34,6 +42,7 @@ export class LoginPageComponent implements OnInit {
   onResponse(res: string): void{
     localStorage.setItem('id_token', res);
     console.log(res)
+    this.router.navigate(['/home-page']);
   }
 
 }
