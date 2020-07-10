@@ -7,9 +7,10 @@
     <label>E-mailadres:</label><br>
     <input formControlName="username" required><br><br>
     <label>Wachtwoord:</label><br>
-    <input formControlName="password" required><br>
+    <input type="password" formControlName="password" required><br>
     <!-- <a style="font-size: small" routerLink="/forgot-pass">Wachtwoord vergeten?</a><br><br> -->
     <button value="Login">Login</button>
+<!--  <div *ngIf="f.username.errors.required || f.password.errors.required">Alle gegevens moeten ingevuld worden.</div>-->
 </form>
 
 <br>

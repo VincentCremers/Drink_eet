@@ -78,7 +78,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.login:
-                fakeLogin();
                 getJWT();
         }
     }
@@ -119,14 +118,5 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     }
                 });
         requestQueue.add(jr);
-    }
-
-
-    private void fakeLogin() {
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(JWT_TOKEN, "token");
-        editor.apply();
-        ((MainActivity)getActivity()).onCreateHelper();
     }
 }

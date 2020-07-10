@@ -138,14 +138,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
-    private void fakeLogin() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(JWT_TOKEN, "token");
-        editor.apply();
-    }
-
     public boolean checkLoggedIn() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         if (sharedPreferences.getString(JWT_TOKEN, null) != null) {

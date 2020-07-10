@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
       username: [''],
       password: ['']
     })
-    if (localStorage.getItem('id_token') !== null) {
+    if (localStorage.getItem('JWT_TOKEN') !== null) {
       this.router.navigate(['/']);
     }
    }
@@ -40,9 +40,11 @@ export class LoginPageComponent implements OnInit {
   }
 
   onResponse(res: string): void{
-    localStorage.setItem('id_token', res);
     console.log(res)
+    localStorage.setItem('JWT_TOKEN', res.toString());
     this.router.navigate(['/home-page']);
   }
+
+  get f() { return this.login.controls; }
 
 }

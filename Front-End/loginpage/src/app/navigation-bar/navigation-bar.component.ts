@@ -12,4 +12,7 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logout() {
+    localStorage.removeItem("JWT_TOKEN");
+  }
 }
